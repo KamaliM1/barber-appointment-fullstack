@@ -1,7 +1,7 @@
-*Functional Requirements* 
-(Ordered from most to least important)
+## Functional Requirements
+*(Ordered from most to least important)*
 
-Essential - 
+### Essential - 
 1. Appointment Scheduling
     - Description: System will allow customers to view available appointment time slots and book appointments in available time slots. The system will also prevent double booking of the same time slot and allow customers to cancel and/or reschedule appointments to an available time slot.
 
@@ -18,7 +18,7 @@ Essential -
     - Description: System will stores users, appointments and availability data in a relational database (PostgreSQL). The system will also retrieve and update appointment data through RESTful API endpoints.
 
 
-Non-Essential / Not Currently in Scope (Implementation TBD)
+### Non-Essential / Not Currently in Scope (Implementation TBD)
 1. Payments
 2. SMS or Email Notifications
 3. Public Deployment
@@ -27,9 +27,9 @@ Non-Essential / Not Currently in Scope (Implementation TBD)
 
 ------------------------------------------------------------
 
-*Non-Functional Requirements*
+## Non-Functional Requirements
 
-Essential - 
+### Essential - 
 1. Security
     - Description: System will make passwords are securely hashed before storage and no sensitive data will be exposed.
 
@@ -50,11 +50,24 @@ Essential -
 
 ------------------------------------------------------------
 
-*MVP Scope*
+## User Flows
+### Customer Flow
+- register -> login -> view slots -> book -> cancel/reschedule
 
+### Admin Flow
+- login -> set availability -> view appointments -> block off time
+
+## Scheduling Rules
+- Appointment Duration: 45 Minutes
+- Time Granularity (length of each time slot): 45 Minutes
+- Conflict Definition: overlapping time slots (start/end times)
+- Cancellation Policy: allowed a cancellation at a minimum of 24 hours before.
+
+------------------------------------------------------------
+## MVP Scope
 Core Problem: Allow customers to book appointments without double-booking and allow the barber to manage availability.
 
-Required Capabilities:
+### Required Capabilities:
 1. User registration and login (JWT-based)
 2. Customer and admin roles
 3. Viewing available appointment slots
@@ -64,7 +77,7 @@ Required Capabilities:
 7. RESTful API with error handling
 8. Local or private deployment
 
-Out of MVP Scope:
+### Out of MVP Scope:
 1. Payment processing
 2. Notifications
 3. Public production deployment
