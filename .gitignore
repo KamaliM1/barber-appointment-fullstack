@@ -1,0 +1,78 @@
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+.env.production
+!.env.example
+
+# Node.js
+node_modules/
+jspm_packages/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+
+# Database dumps and backups
+*.sql.backup
+*.sql.bak
+*.dump
+*.tar.gz
+
+# PostgreSQL data directory
+/pgdata/
+/postgres-data/
+/data/postgres/
+
+# Database migration state
+.migrate/
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+
+# Testing
+coverage/
+.nyc_output/
+*.test.log
+
+# Build Output
+dist/
+build/
+out/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# JetBrains (WebStorm, IntelliJ)
+.idea/
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Temporary Files
+tmp/
+temp/
+*.tmp
+
+# Linux-Specific
+# Thumbnail cache
+.directory
+
+# Trash folder
+.Trash-*/
