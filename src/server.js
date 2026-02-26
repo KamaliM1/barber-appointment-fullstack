@@ -83,6 +83,23 @@ app.get('/api/test-db', async (req, res) => {
     }
 });
 
+// import route modules
+const appointmentRoutes = require('./routes/appointments');
+const availabilityRoutes = require('./routes/availability');
+const { getAvailability } = require('./controllers/availabilityController');
+
+// use route modules
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/availability', availabilityRoutes);
+
+
+// ---------------
+// ERROR HANDLING
+// ---------------
+
+// import error handler
+const errorHandler = require('./middleware/errorHandler');
+
 // 404 handler - has to be after all the other routes
 app.use((req, res) => {
     res.status(404).json ({
@@ -91,6 +108,9 @@ app.use((req, res) => {
         availableEndpoints: ['/health', '/api', 'api/test-db']
     });
 });
+
+// global error handler - has to be last
+app.use(errorHandler);
 
 // -------------
 // START SERVER
