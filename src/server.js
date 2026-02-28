@@ -59,7 +59,7 @@ app.get('/api', (req, res) => {
             health: '/health',
             auth: '/api/auth',
             appointments: '/api/appointments',
-            availability: '/api/avaialability'
+            availability: '/api/availability'
         }
     });
 });
@@ -86,9 +86,15 @@ app.get('/api/test-db', async (req, res) => {
 // import route modules
 const appointmentRoutes = require('./routes/appointments');
 const availabilityRoutes = require('./routes/availability');
+const authRoutes = require('./routes/auth');
+const appointmentRoutes = require('./routes/appointments');
+const availabilityRoutes = require('./routes/availability');
 const { getAvailability } = require('./controllers/availabilityController');
 
 // use route modules
+app.use('/api/appointments', appointmentRoutes);
+app.use('/api/availability', availabilityRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/appointments', appointmentRoutes);
 app.use('/api/availability', availabilityRoutes);
 
