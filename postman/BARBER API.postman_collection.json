@@ -1,0 +1,39 @@
+{
+	"info": {
+		"_postman_id": "ec6b43dd-e4e1-4679-bb75-99add427c188",
+		"name": "BARBER API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "52605889"
+	},
+	"item": [
+		{
+			"name": "HEALTH & STATUS",
+			"item": [
+				{
+					"name": "Health Check",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "API Info",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Test DB",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
