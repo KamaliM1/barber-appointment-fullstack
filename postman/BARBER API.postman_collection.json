@@ -207,7 +207,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Get Barber Availability",
 					"request": {
 						"method": "GET",
 						"header": [],
