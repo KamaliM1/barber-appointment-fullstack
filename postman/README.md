@@ -126,14 +126,14 @@ If you want to use different servers, create an environment:
 
 | Endpoint | Happy Path | Error Cases |
 |----------|-----------|-------------|
-| Register | ✓ 201 Created | ✓ 409 Duplicate email |
-| Login | ✓ 200 OK | ✓ 401 Invalid credentials |
-| Get User | ✓ 200 OK | ✓ 401 No token, 403 Invalid token |
-| Set Availability | ✓ 201 Created | ✓ 400 Invalid times |
-| Get Availability | ✓ 200 OK | - |
-| Get Slots | ✓ 200 OK | ✓ 400 Missing params |
-| Book Appointment | ✓ 201 Created | ✓ 409 Conflict, 422 Outside hours |
-| Cancel | ✓ 200 OK | ✓ 404 Not found |
+| Register |  201 Created |  409 - Duplicate email |
+| Login |  200 OK |  401 - Invalid credentials |
+| Get Current User |  200 OK |  401 No token, 403 - Invalid token |
+| Set Availability |  201 Created |  400 - Invalid times |
+| Get Availability |  200 OK |  |
+| Get Slots |  200 OK |  400 - Missing params |
+| Book Appointment |  201 Created |  409 - Conflict, 422 - Outside hours |
+| Cancel | 200 OK |  404 - Not found |
 
 ## Notes
 
