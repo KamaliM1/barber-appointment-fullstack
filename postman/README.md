@@ -2,6 +2,53 @@
 
 This collection contains all API endpoints for testing the Barber Appointment Management System.
 
+## Option 1: Test the Deployed Version (Recommended)
+
+**Live API:** (coming soon)
+
+No setup required! Use Postman with the deployed URL.
+
+---
+
+## Option 2: Run Locally (Linux/macOS)
+
+### Prerequisites
+- Node.js v18+
+- PostgreSQL v14+
+- Postman
+
+### Quick Setup
+```bash
+# Clone and install
+git clone https://github.com/YOUR-USERNAME/barber-appointment-fullstack.git
+cd barber-appointment-fullstack
+npm install
+
+# Setup database
+psql -U postgres -c "CREATE DATABASE barber_app;"
+psql -U postgres -d barber_app -f database/schema.sql
+psql -U postgres -d barber_app -f database/seed.sql
+
+# Configure environment
+cp .env.example .env
+# Edit .env with your database credentials
+
+# Start server
+npm start
+```
+
+### Test with Postman
+1. Import `postman/Barber-API-PoC.postman_collection.json`
+2. Run tests
+
+---
+
+## Option 3: Windows Users
+
+If you're on Windows and run into issues:
+1. **Recommended:** Test the deployed version instead
+2. **OR:** Contact me for setup help
+
 ## Import Instructions
 
 1. Open Postman Desktop or Postman Web
@@ -32,75 +79,62 @@ Barber API - PoC (11 requests)
     └─ Cancel Appointment
 ```
 
-## Prerequisites
+## Testing Workflow
 
-- Server running on `http://localhost:5000`
-- PostgreSQL database with seed data
-- Node.js dependencies installed (`npm install`)
+### Step 1: Verify Server
 
-## Quick Start
+Open **"Health Check"** → Click **"Send"**
 
-### 1. Start the Server
-```bash
-cd ~/repos/barber-appointment-fullstack
-npm start
-```
+**Expected:** `200 OK` with status message
 
-### 2. Test Health Check
-- Open "Health Check" request
-- Click "Send"
-- Expect: 200 OK with status message
+---
 
-### 3. Authentication Flow
-- **Register User** → Save the returned token
-- **Login User** → Save the returned token
-- **Get Current User** → Add token to Authorization header
-  - Header: `Authorization: Bearer <your-token>`
+### Step 2: Authentication Flow
 
-### 4. Complete Booking Workflow
+#### Register or Login
+1. Open **"Register User"** or **"Login User"**
+2. Click **"Send"**
+3. **Copy the token** from response
 
-**Step 1: Set Availability**
+**Response includes:**
 ```json
-POST /api/availability/set
 {
-  "barberId": 1,
-  "startTime": "2026-03-20T09:00:00-05:00",
-  "endTime": "2026-03-20T17:00:00-05:00"
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
 }
 ```
-Expected: 201 Created
 
-**Step 2: Query Available Slots**
+#### Test Protected Route
+1. Open **"Get Current User"**
+2. Verify **Headers** tab has:
 ```
-GET /api/appointments/available?date=2026-03-20&barberId=1
+   Key: Authorization
+   Value: Bearer <paste-token-here>
 ```
-Expected: 200 OK with array of 10 slots
+3. Click **"Send"**
 
-**Step 3: Book an Appointment**
-```json
-POST /api/appointments/book
-{
-  "barberId": 1,
-  "customerId": 2,
-  "date": "2026-03-20",
-  "startTime": "10:00"
-}
-```
-Expected: 201 Created
+**Expected:** `200 OK` with user details
 
-**Step 4: Test Conflict Prevention**
-- Send the same booking request again
-- Expected: **409 Conflict** - "This time slot is already booked"
+---
 
-## Environment Variables
+### Step 3: Complete Booking Workflow
 
-If you want to use different servers, create an environment:
+This demonstrates the core conflict prevention feature.
 
-1. Click "Environments" (left sidebar)
-2. Create "Local Development"
-3. Add variable:
-   - `base_url`: `http://localhost:5000`
-4. Use in requests: `{{base_url}}/api/auth/login`
+#### A. Set Barber Availability
+- Open **"Set Availability"**
+- Body is pre-configured (8-hour window on March 20)
+- Click **"Send"**
+- **Expected:** `201 Created`
+
+#### B. Query Available Slots
+- Open **"Get Available Slots"**
+- Click **"Send"**
+- **Expected:** `200 OK` with 10 available 45-minute slots
+
+#### C. Book an Appointment
+- Open **"Book Appointment"**
+- Click **"Send"**
+- **Expected:** `201 Created` with appointment details
 
 ## Common Issues
 
@@ -128,7 +162,7 @@ If you want to use different servers, create an environment:
 |----------|-----------|-------------|
 | Register |  201 Created |  409 - Duplicate email |
 | Login |  200 OK |  401 - Invalid credentials |
-| Get Current User |  200 OK |  401 No token, 403 - Invalid token |
+| Get Current User |  200 OK |  401 - No token, 403 - Invalid token |
 | Set Availability |  201 Created |  400 - Invalid times |
 | Get Availability |  200 OK |  |
 | Get Slots |  200 OK |  400 - Missing params |
@@ -145,10 +179,5 @@ If you want to use different servers, create an environment:
 ## API Documentation
 
 For complete API reference, see `docs/api.md`
-
-## Support
-
-Issues? Check server logs or verify database connection with:
-```bash
-psql barber_app -c "SELECT * FROM users;"
-```
+- **Quick Reference:** `../docs/api-quick-reference.md`
+- **Database Schema:** `../database/README.md`
