@@ -178,6 +178,6 @@ This demonstrates the core conflict prevention feature.
 
 ## API Documentation
 
-For complete API reference, see `docs/api.md`
+For complete API reference, see `docs/api.md` (in progress)
 - **Quick Reference:** `../docs/api-quick-reference.md`
 - **Database Schema:** `../database/README.md`
