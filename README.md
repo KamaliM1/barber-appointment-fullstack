@@ -102,7 +102,7 @@ Server runs at `http://localhost:5000`
 
 ## Documentation
 
-- **API Reference:** `docs/api.md` - Complete endpoint documentation
+- **API Reference:** `docs/api.md` - Complete endpoint documentation (in progress)
 - **Quick Reference:** `docs/api-quick-reference.md` - One-page lookup
 - **Testing Guide:** `postman/README.md` - Postman setup and workflow
 - **Database Schema:** `database/README.md` - Tables and relationships
